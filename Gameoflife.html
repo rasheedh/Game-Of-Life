@@ -1,256 +1,211 @@
-<!doctype html>
-<html lang="en">
-<html>
-<body>
-<canvas id="a" width=1000 height=1000></canvas>
-<script type="text/javascript">
-/**********************************************************/
-var e=300;
-var f=300;
-var g = 5;
-var h = 5;
-var c = new Array(8);
-var a = new Array(8);
-var b = new Array(8);
-var r = 0;
-for(var i=0;i<8;i+=1){
-if(i==0 || i==4 || i==7 || i==4 ){
-c[i]=1
-}
-else{
-c[i]=0
-}
-}
-/*************************************************/
-function rand(){
-for(var i=0;i<8;i+=1){
-a[i]=new Array();
-b[i]=new Array();
-}
-
-for(var j =0; j<8; j+=1)
-{
-for(var q= 0; q<8; q+=1 ){
-a[j][q] = parseInt(Math.random()*2);
-b[j][q] = 0;
-}
-}
-console.log("Original");
-console.log(a);
-}
-/*************************************************/
-function inver(){
-for(var j =0; j<8; j+=1)
-{
-for(var q= 0; q<8; q+=1 ){
-var temp = b[j][q];
-b[j][q] = a[q][j];
-a[q][j] = temp; 
-}}
-console.log("inverse functn--b");
-console.log(b);
-}
-/*****************************************************/
-function rever(){
-for(var j =0; j<8; j+=1)
-{
-for(var q= 0; q<8; q+=1 ){
-var temp = b[j][q];
-b[j][q] = a[q][j];
-a[q][j] = temp;
-}}
-console.log("reverse--a");
-console.log(a);
-}
-/********************************************************/
-function current1(){
-r+=1;
-for(var j =0; j<8; j+=1)
-{
-var m = 0;
-for(var q= 0; q<8; q+=1 ){
-if(a[j][q]==1){
-m+=1}
-if(m==2 && c[j]==1){c[j]=1;}
-else if(m==3){c[j]=1;}
-else{c[j]=0;}
-}}
-console.log("Current1-c");
-console.log(c);
-console.log("Current1-r");
-console.log(r);
-}
-/*************************************************************/
-function current2(){
-r+=1;
-for(var j =0; j<8; j+=1)
-{
-var m = 0;
-for(var q= 0; q<8; q+=1 ){
-if(b[j][q]==1){
-m+=1}
-if(m==2 && c[j]==1){c[j]=1;}
-else if(m==3){c[j]=1;}
-else{c[j]=0;}
-}}
-console.log("Current2-c");
-console.log(c);
-console.log("Current2-r");
-console.log(r);
-}
-/****************************************************************/
-var a_canvas = document.getElementById("a");
-var a_context = a_canvas.getContext("2d");
-a_context.fillStyle= 'rgb(255,0,0)';
-function can1(){
-for(i=0;i<8;i+=1){
-if(c[i]==1){can(i)};
-if(c[i]==0){con(i)};
-}
-}
-/*************************************************************************/
-function can(i){
-if(e>700 || e<0){e=250}
-if(f>700 || f<0){f=250}
-if(r>=300){
-r=0}
-if (i == 7 ){
-f = f+(r*1);
-a_context.fillRect(e,f,g,h);
-color(e,f,g,h);
-}
-if(i == 4 ){
-f= f-(r*1);
-e=e+(r*1) ;
-a_context.fillRect(e,f,g,h);
-color(e,f,g,h);
-}
-if(i == 2){
-e=e+(r*1) ;
-f = f+(r*1);
-a_context.fillRect(e,f,g,h)
-color(e,f,g,h);
-}
-if(i==6 ){
-e=e-(r*1);
-f = f+(r*1);
-a_context.fillRect(e,f,g,h)
-color(e,f,g,h);
-}
-if( i == 5){
-f=f-(r*1);
-a_context.fillRect(e,f,g,h)
-color(e,f,g,h);
-}
-if(i == 3){
-e=e+(r*1);
-a_context.fillRect(e,f,g,h)
-color(e,f,g,h);
-}
-if( i==1){
-e=e-(r*1);
-f=f-(r*1);
-a_context.fillRect(e,f,g,h)
-color(e,f,g,h);
-}
-if( i==0){
-e=e-(r*1);
-a_context.fillRect(e,f,g,h)
-color(e,f,g,h);
-}
-}
-/***************************************************************************************/
-function con(i){
-if(e>700 || e<0){e=250}
-if(f>700 || f<0){f=250}
-if(r>=300){
-r=0}
-if (i ==7 ){
-f = f+(r*1);
-e= e+(r*1);
-a_context.fillRect(e,f,g,h);
-color1(e,f,g,h);
-}
-if(i == 4 ){
-f= f-(r*1);
-a_context.fillRect(e,f,g,h);
-color1(e,f,g,h);
-}
-if(i == 2){
-e=e+(r*1) ;
-f=f+(r*1);
-a_context.fillRect(e,f,g,h)
-color1(e,f,g,h);
-}
-if(i==6 ){
-e=e-(r*1);
-a_context.fillRect(e,f,g,h)
-color1(e,f,g,h);
-}
-if( i == 5){
-f=f-(r*1);
-a_context.fillRect(e,f,g,h)
-color1(e,f,g,h);
-}
-if(i == 3){
-e=e+(r*1);
-a_context.fillRect(e,f,g,h)
-color1(e,f,g,h);
-}
-if( i==1){
-e=e-(r*1);
-a_context.fillRect(e,f,g,h)
-color1(e,f,g,h);
-}
-if( i==0){
-e=e-(r*1);
-a_context.fillRect(e,f,g,h)
-color1(e,f,g,h);
-}
-}
-/*******************************************************************/
-function color(e,f,g,h){
-var imgData=a_context.getImageData(e,f,g,h);
-for (var i=0;i<imgData.data.length;i+=4)
-  {
-  imgData.data[i]=250-imgData.data[i];
-  imgData.data[i+1]=250-imgData.data[i+1];
-  imgData.data[i+2]=250-imgData.data[i+2];
-  imgData.data[i+3]=250;
-  }
-a_context.putImageData(imgData,e,f);
-}
-/*******************************************************************/
-function color1(e,f,g,h){
-var imgData=a_context.getImageData(e,f,1,1);
-if(imgData.data[0]==0 && imgData.data[1]==255 && imgData.data[2]==255){
-for (var i=0;i<imgData.data.length;i+=4)
-  {
-  imgData.data[i]=250-imgData.data[i];
-  imgData.data[i+1]=250-imgData.data[i+1];
-  imgData.data[i+2]=250-imgData.data[i+2];
-  imgData.data[i+3]=250;
-  }
-a_context.putImageData(imgData,e,f);
-}}
-/*******************************************************************/
-var z=0;
-function loop(){
-rand();
-if (z == 0){
-current1();
-can1();
-inver();
-z=z+1;
-}
-if(z == 1){
-current2();
-can1();
-rever();
-z=z-1;
-}
-}
-setInterval(loop,10);
-</script>
-</body>
-</html>
+  <!doctype html>
+	<html lang="en">
+	<html>
+	<body>
+	<canvas id="a" width=400 style="border: 5px solid #FF0066"height=300></canvas>
+	<script type="text/javascript">
+	/*************************************************************************/
+	var c = new Array(8);
+	var a = new Array(8);
+	var r=8;
+	var e=400;
+	var f=300;
+	var g = 10;
+	var h = 10;
+	var z=0;
+	var a_canvas = document.getElementById("a");
+	var a_context = a_canvas.getContext("2d");
+	a_context.fillStyle="#000000";
+	a_context.fillRect(0,0,400,300);
+	for(var i=0;i<8;i+=1){
+	a[i]=new Array();
+	}
+	/****************************************************************************/
+	function fun(){
+	a_context.fillStyle="rgb(0,255,0)";
+	function rand(){
+	
+	for(var j =0; j<8; j+=1)
+	{
+	for(var q= 0; q<8; q+=1 ){
+	a[j][q] = parseInt(Math.random()*2);
+	}
+	}
+	return a;
+	}
+	/*****************************************************************************/
+	function current1(y){
+	for(var j =0; j<8; j+=1)
+	{
+	var m = 0;
+	for(var q= 0; q<8; q+=1 ){
+	if(y[j][q]==1){
+	m+=1}
+	if(m==2 && c[j]==1){c[j]=1;}
+	else if(m==3){c[j]=1;}
+	else{c[j]=0;}
+	}}
+	return c;
+	}
+	/*****************************************************************************/
+	function up_date(s,q){
+	q.shift();
+	q.push(s);
+	r-=1;
+	return q;
+	}
+	/*****************************************************************************/
+	
+	function can1(s){
+	for(i=0;i<8;i+=1){
+	if(s[i]==1){can(i)};
+	if(s[i]==0){con(i)};
+	}
+	}
+	/*****************************************************************************/
+	function can(i){
+	if( e<0){e=400}
+	if( f<0){f=300}
+	if (i == 0 ){
+	f = f-10;
+	e=e-10;
+	a_context.fillRect(e,f,g,h);
+	color(e,f,g,h);
+	}
+	if(i == 1 ){
+	f= f-10;
+	a_context.fillRect(e,f,g,h);
+	color(e,f,g,h);
+	}
+	if(i == 2){
+	e=e+10 ;
+	f = f-10;
+	a_context.fillRect(e,f,g,h)
+	color(e,f,g,h);
+	}
+	if(i==3 ){
+	e=e-10;
+	a_context.fillRect(e,f,g,h)
+	color(e,f,g,h);
+	}
+	if( i == 4){
+	e=e+10;
+	a_context.fillRect(e,f,g,h)
+	color(e,f,g,h);
+	}
+	if(i == 5){
+	e=e-10;
+	f=f+10;
+	a_context.fillRect(e,f,g,h)
+	color(e,f,g,h);
+	}
+	if( i==6){
+	f=f+10;
+	a_context.fillRect(e,f,g,h)
+	color(e,f,g,h);
+	}
+	if( i==7){
+	e=e+10;
+	f=f+10;
+	a_context.fillRect(e,f,g,h)
+	color(e,f,g,h);
+	}
+	}
+	/***************************************************************************************/
+	function con(i){
+	if(e>700 || e<0){e=400}
+	if(f>700 || f<0){f=300}
+	if (i == 0 ){
+	a_context.fillRect(e,f,g,h);
+	color1(e,f,g,h);
+	}
+	if(i == 1 ){
+	a_context.fillRect(e,f,g,h);
+	color1(e,f,g,h);
+	}
+	if(i == 2){
+	a_context.fillRect(e,f,g,h)
+	color1(e,f,g,h);
+	}
+	if(i==3 ){
+	a_context.fillRect(e,f,g,h)
+	color1(e,f,g,h);
+	}
+	if( i == 4){
+	a_context.fillRect(e,f,g,h)
+	color1(e,f,g,h);
+	}
+	if(i == 5){
+	a_context.fillRect(e,f,g,h)
+	color1(e,f,g,h);
+	}
+	if( i==6){
+	a_context.fillRect(e,f,g,h)
+	color1(e,f,g,h);
+	}
+	if( i==7){
+	a_context.fillRect(e,f,g,h)
+	color1(e,f,g,h);
+	}
+	}
+	/*******************************************************************/
+	function color(e,f,g,h){
+	var imgData=a_context.getImageData(e,f,g,h);
+	for (var i=0;i<imgData.data.length;i+=4)
+	  {
+	  imgData.data[i]=250-imgData.data[i];
+	  imgData.data[i+1]=250-imgData.data[i+1];
+	  imgData.data[i+2]=250-imgData.data[i+2];
+	  imgData.data[i+3]=250;
+	  }
+	a_context.putImageData(imgData,e,f);
+	}
+	/*******************************************************************/
+	function color1(e,f,g,h){
+	var imgData=a_context.getImageData(e,f,g,h);
+	if(imgData.data[0]==255 && imgData.data[1]==0 && imgData.data[2]==255){
+	for (var i=0;i<imgData.data.length;i+=4)
+	  {
+	  imgData.data[i]=250-imgData.data[i];
+	  imgData.data[i+1]=250-imgData.data[i+1];
+	  imgData.data[i+2]=250-imgData.data[i+2];
+	  imgData.data[i+3]=250;
+	  }
+	a_context.putImageData(imgData,e,f);
+	}}
+	/*****************************************************************************/
+	function loop(){
+	q= rand();
+	s = current1(q);
+	t = up_date(s,q);
+	can1(s);
+	}
+	tick = setInterval(loop,10);
+	}
+	function clr(){
+	stop();
+	a_context.clearRect(0,0,400,300);
+	a_context.fillStyle="#000000";
+	a_context.fillRect(0,0,400,300);
+	}
+	
+	function funny(){
+	if (z==0){
+	fun();
+	z+=1;
+	}
+	}
+	function stop(){
+	if (z==1){
+	clearInterval(tick);
+	z-=1;}
+	
+	}
+	</script>
+	<form> 
+	<input type="button" value="Click" onclick="funny()">
+	<input type="button" value="Stop" onclick="stop()">
+	<input type="button" value="Clear" onclick="clr()">
+	</form>
+	</body>
+	</html>
